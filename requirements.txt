@@ -1,0 +1,4 @@
+pandas~=2.2.1
+torch~=2.2.1
+torchvision~=0.17.1
+lightning~=2.2.1
