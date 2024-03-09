@@ -18,4 +18,4 @@ DEVICES = [0]
 PRECISION = 16
 
 # Save Path
-MODEL_PATH = "app/model.pt"
+MODEL_PATH = "../app/model.pt"
