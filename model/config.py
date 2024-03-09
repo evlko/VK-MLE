@@ -24,3 +24,4 @@ MODEL_PATH = "../app/model.pt"
 # ML Flow
 TRACKING_URL = "http://51.250.112.132:5000"
 EXPERIMENT_NAME = "VK_TEST"
+LOG_MODEL = False
