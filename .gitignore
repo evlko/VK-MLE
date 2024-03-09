@@ -3,3 +3,4 @@
 .env
 */__pycache__/*
 model/lightning_logs/*
+model/tb_logs/*
