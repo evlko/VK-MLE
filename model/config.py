@@ -6,6 +6,7 @@ LEARNING_RATE = 0.001
 BATCH_SIZE = 64
 MIN_EPOCHS = 1
 MAX_EPOCHS = 10
+TRAIN_VAL_RATIO = 0.8
 
 # Dataset
 TRAIN_DATA_PATH = "data/custom_train_df.csv"
