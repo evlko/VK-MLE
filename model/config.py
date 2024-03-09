@@ -16,3 +16,6 @@ NUM_WORKERS = 4
 ACCELERATOR = "gpu"
 DEVICES = [0]
 PRECISION = 16
+
+# Save Path
+MODEL_PATH = "app/model.pt"
