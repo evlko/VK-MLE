@@ -6,8 +6,6 @@ RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
 COPY app /app
 
-WORKDIR /app
-
 EXPOSE 3000
 
-CMD ["uvicorn", "app:app", "--reload", "--host", "0.0.0.0", "--port", "3000", "--log-level", "critical"]
+CMD ["uvicorn", "app.app:app", "--reload", "--host", "0.0.0.0", "--port", "3000", "--log-level", "critical"]
