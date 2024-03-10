@@ -1,3 +1,5 @@
+RANDOM_SEED = 42
+
 # Features after EDA
 INPUT_SIZE = 14
 
