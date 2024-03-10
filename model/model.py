@@ -10,23 +10,16 @@ class RankingModel(pl.LightningModule):
         super().__init__()
         self.lr = learning_rate
 
-        self.fc1 = nn.Linear(input_size, 128)
-        self.do1 = nn.Dropout(0.1)
-        self.bn1 = nn.BatchNorm1d(128)
-        self.fc2 = nn.Linear(128, 64)
-        self.do2 = nn.Dropout(0.1)
-        self.bn2 = nn.BatchNorm1d(64)
-        self.fc3 = nn.Linear(64, 1)
+        self.fc1 = nn.Linear(input_size, 256)
+        self.fc2 = nn.Linear(256, 128)
+        self.fc3 = nn.Linear(128, 1)
 
-        #self.loss_fn = nn.BCELoss
         self.loss_fn = F.binary_cross_entropy
 
         self.validation_scores_targets = []
         self.test_scores_targets = []
 
     def forward(self, x):
-        #x = torch.relu(self.bn1(self.do1(self.fc1(x))))
-        #x = torch.relu(self.bn2(self.do2(self.fc2(x))))
         x = torch.relu(self.fc1(x))
         x = torch.relu(self.fc2(x))
         x = torch.sigmoid(self.fc3(x))
