@@ -1,7 +1,7 @@
+import pytorch_lightning as pl
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import pytorch_lightning as pl
 from sklearn.metrics import ndcg_score
 
 
@@ -15,7 +15,7 @@ class RankingModel(pl.LightningModule):
         self.fc3 = nn.Linear(32, 1)
 
         self.loss_fn = F.binary_cross_entropy
-        
+
         self.validation_scores_targets = []
         self.test_scores_targets = []
 
@@ -30,7 +30,7 @@ class RankingModel(pl.LightningModule):
         outputs = self(inputs).squeeze(1)
         loss = self.loss_fn(outputs, targets.float())
         return loss, outputs, targets
-    
+
     def _score_ndcg(self, scores_targets, log_name: str):
         all_targets = torch.cat([item[0] for item in scores_targets]).cpu().numpy()
         all_scores = torch.cat([item[1] for item in scores_targets]).cpu().numpy()

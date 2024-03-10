@@ -1,8 +1,7 @@
-import torch
-from torch.utils.data import DataLoader, TensorDataset
-from torch.utils.data import random_split
-import pytorch_lightning as pl
 import pandas as pd
+import pytorch_lightning as pl
+import torch
+from torch.utils.data import DataLoader, TensorDataset, random_split
 
 
 class DataModule(pl.LightningDataModule):

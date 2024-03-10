@@ -6,4 +6,8 @@ run:
 tensorboard:
 	tensorboard --logdir=model/tb_logs --bind_all
 
+pretty:
+	black .
+	isort .
+
 .PHONY: run
