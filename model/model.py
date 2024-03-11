@@ -14,7 +14,7 @@ class RankingModel(pl.LightningModule):
         self.fc2 = nn.Linear(256, 128)
         self.fc3 = nn.Linear(128, 1)
 
-        self.loss_fn = F.binary_cross_entropy
+        self.loss_fn = nn.BCELoss()
 
         self.validation_scores_targets = []
         self.test_scores_targets = []
@@ -69,3 +69,12 @@ class RankingModel(pl.LightningModule):
 
     def configure_optimizers(self):
         return torch.optim.Adam(self.parameters(), lr=self.lr)
+
+    def get_model_size(self) -> float:
+        param_size, buffer_size = 0, 0
+        for param in self.parameters():
+            param_size += param.nelement() * param.element_size()
+        for buffer in self.buffers():
+            buffer_size += buffer.nelement() * buffer.element_size()
+        size_all_mb = (param_size + buffer_size) / 1024**2
+        return size_all_mb
