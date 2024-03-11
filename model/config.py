@@ -10,6 +10,10 @@ MIN_EPOCHS = 1
 MAX_EPOCHS = 13
 TRAIN_VAL_RATIO = 0.8
 
+# Loggers
+TENSORBOARD_LOGGER = False
+MLFLOW_LOGGER = False
+
 # Dataset
 TRAIN_DATA_PATH = "data/custom_train_df.csv"
 TEST_DATA_PATH = "data/custom_test_df.csv"
