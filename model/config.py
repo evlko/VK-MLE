@@ -1,3 +1,9 @@
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
 RANDOM_SEED = 42
 
 # Features after EDA
@@ -12,7 +18,7 @@ TRAIN_VAL_RATIO = 0.8
 
 # Loggers
 TENSORBOARD_LOGGER = False
-MLFLOW_LOGGER = False
+MLFLOW_LOGGER = True
 
 # Dataset
 TRAIN_DATA_PATH = "data/custom_train_df.csv"
@@ -28,11 +34,12 @@ PRECISION = 16
 MODEL_PATH = "../app/model.pt"
 
 # ML Flow
-TRACKING_URL = "http://51.250.112.132:5000"
+ML_FLOW_URL = os.getenv("ML_FLOW_URL")
+TRACKING_URL = f"{ML_FLOW_URL}:5000"
 EXPERIMENT_NAME = "VK_TEST"
-LOG_MODEL = False
+LOG_MODEL = True
 MODEL_NAME = "VK_MODEL"
-SAVE_MODEL = False
+SAVE_MODEL = True
 
 # Minio
-MLFLOW_S3_ENDPOINT_URL = "http://51.250.112.132:9000"
+MLFLOW_S3_ENDPOINT_URL = f"{ML_FLOW_URL}:9000"
