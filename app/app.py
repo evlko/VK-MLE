@@ -1,9 +1,13 @@
 import json
 from typing import List
 
+import mlflow
 import torch
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
+from fastapi.openapi.docs import get_swagger_ui_html
+from fastapi.openapi.models import OpenAPI
+from fastapi.openapi.utils import get_openapi
 from starlette.responses import JSONResponse
 
 import app.config as config
@@ -13,6 +17,8 @@ app = FastAPI()
 
 
 def load_model():
+    if config.PROD:
+        return mlflow.pytorch.load_model(config.PROD_MODEL_PATH)
     return torch.jit.load(config.MODEL_PATH)
 
 
@@ -59,3 +65,13 @@ def get_prediction(objects: List[FeaturesData]) -> int:
     result = {"predictions": scores}
 
     return JSONResponse(content=jsonable_encoder(result))
+
+
+@app.get("/docs", include_in_schema=False)
+async def custom_swagger_ui_html():
+    return get_swagger_ui_html(openapi_url="/openapi.json", title="docs")
+
+
+@app.get("/openapi.json", include_in_schema=False)
+async def get_open_api_endpoint():
+    return JSONResponse(get_openapi(title="docs", version="0.1.0", routes=app.routes))
