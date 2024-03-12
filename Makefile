@@ -10,6 +10,9 @@ pretty:
 	black .
 	isort .
 
+test:
+	pytest -W ignore::DeprecationWarning
+
 docker_build:
 	docker image build -t vk-mle .
 
